@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
 	double x0 = 0.5;
-	double xn,x;
+	double x;
 	int Nskip = 100; //Number of iterations to skip
 	int Nend  = 200; //Number of total iterations
 	
@@ -14,14 +14,12 @@ int main(){
 
 	for(double r=0; r <= 4; r += 0.001){
 	   x=x0;
-	   for(int i=1; i <= Nskip; i++){
-		   xn = x*r - x*x*r;
-	   }
-	   x = xn;
+	   for(int i=1; i <= Nskip; i++)
+		   x = r*x*(1-x);
 	   for(int i=Nskip+1; i <= Nend; i++){
-	   		   xn = x*r - x*x*r;
+	   		   x = r*x*(1-x);
 	   		   // cout << r << "\t" << x << endl; // vorherige Ausgabe
-			   f_arr[i-Nskip-1] = xn; // Werteuebergabe
+			   f_arr[i-Nskip-1] = x; // Werteuebergabe
    	   }
 	}
 	
